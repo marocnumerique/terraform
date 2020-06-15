@@ -16,7 +16,7 @@ resource "azurerm_subnet" "test" {
  virtual_network_name = azurerm_virtual_network.test.name
  address_prefix       = "10.0.2.0/24"
 }
-resource "azurerm_network_security_group" "nsgmulti" {
+resource "azurerm_network_security_group" "nsgavset" {
  
     name                = "mynsg"
     location            = "West US 2"
@@ -51,7 +51,7 @@ security_rule {
 resource "azurerm_network_interface_security_group_association" "assnsgmulti" {
   count = 2
     network_interface_id      = azurerm_network_interface.test[count.index].id
-    network_security_group_id = azurerm_network_security_group.nsgmulti.id
+    network_security_group_id = azurerm_network_security_group.nsgavset.id
 }
 
 resource "azurerm_public_ip" "test" {
