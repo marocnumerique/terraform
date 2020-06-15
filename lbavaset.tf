@@ -49,8 +49,8 @@ security_rule {
     }
 }
 resource "azurerm_network_interface_security_group_association" "assnsgmulti" {
-  
-    network_interface_id      = azurerm_network_interface.test.id
+  count = 2
+    network_interface_id      = azurerm_network_interface.test[count.index].id
     network_security_group_id = azurerm_network_security_group.nsgmulti.id
 }
 
